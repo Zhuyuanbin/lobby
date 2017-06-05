@@ -1,0 +1,12 @@
+
+message OX_REGLOGIN_MSG{
+optional string account = 1;
+optional string password = 2;
+optional int32 type=3;
+}
+
+
+message OX_REGLOGIN_RESULT{
+optional int32 type=1;	//返回码：0代表 可以注册或登录密码正确、-1 用户名已经存在、-2用户名或密码不存在
+optional int32 externalid=2;
+}

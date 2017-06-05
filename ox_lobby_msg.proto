@@ -1,0 +1,238 @@
+//c++
+import public "ox_mall_msg.proto";
+import public "ox_mall2_msg.proto";
+import public "ox_user_honor.proto";
+
+import public "ox_gift_msg.proto";
+//新版本活动
+//
+
+message OX_New_Active_Tips{
+	required bytes title = 1;	//标题
+	required bytes content = 2;	//内容
+}
+//活动的具体内容
+message OX_New_Active_Content{
+	optional bytes adress = 1;	//地址如果---- 没有这个值就不用跳转到网页, 会配置下面的变量
+	optional bytes title = 2;		//标题
+	optional bytes time = 3;		//显示时间
+	optional bytes distxt = 4;		//页面显示内容--- 详细内容
+	optional bytes picaddress = 5;	//图片下载地址
+	optional bytes introduction = 6; // 简介
+}
+
+//排行榜数据
+message Ox_Ranking_Data {
+	required bytes nickname = 1;	//昵称
+	required int32  num = 2;		//数据量
+	required int32  index = 3;		//1本月充值冠军 2昨天充值冠军 3上周赢局冠军 4上周魅力冠军
+	required int32 headerid = 4;		//头像id
+	optional int32  order = 5;		//第几名
+}
+
+//斗地主下载地址
+message Ox_Ddz_Info {
+	required bytes addr = 1; 	//下载地址
+	required bytes packagename = 2; 	//包名
+}
+
+
+message OX_LOBBY_MSG{
+//帮助信息
+required bool disp = 1;  //如果是1 表示显示QQ 和email
+optional string qq = 2;
+optional string mail = 3;
+
+required int32 isrecharge = 4;//是否有充值过0 首充 1 有充值过
+
+//充值信息
+required int32 nRet = 5;		//充值结果1: 成功 0:没有充值
+repeated OX_MALL_RECHARGE_RECORD record = 6; //记录信息
+
+//商城商品信息
+repeated OX_MALL_GOODS gods = 7;//有6  项兑换项目
+
+
+//抽奖信息
+required int32 totalgold = 8;		//总的游戏币
+required int32 reqgold = 9;		//抽一次奖所用的游戏币
+
+//金牛重量
+required float oxweight = 10;
+//领取金币数量
+required int32 oxgold = 11;
+//是否有金牛  0是没有  1是有
+required int32 oxget = 12;
+
+//公告
+optional bytes notice = 13;
+
+//系统喇叭
+repeated OX_Speaker_DATA speaker = 14;
+
+
+//商城计费金额- 外部版本
+optional int32 mallbillingnum = 15;
+
+//其它计费金额- 外部版本
+optional int32 otherbillingnum = 16;
+
+//连续登入
+optional int32 daynum = 17;	//连续登入的天数
+optional int64 goldnum = 18;	//连续登入领取金币后的数量  0则说明已经领取过了
+
+//奖券数量
+optional int32 lotterynum = 19;	//用户当前奖券
+
+//是否购买水果没有领取0不提示1提示
+optional int32 fruittips = 20;
+
+//登入获取奖券
+optional int32 cjqGetNum = 21;	//获取的抽奖券数量
+optional int32 cjqTotalNum = 22;	//总的抽奖券数量
+
+//是否是末成年0 没修改过日期  1  末成年 2 成年
+optional int32 badult = 23;
+optional int32 birthday = 24;
+optional int32 firstlogon = 25;		//是否是首次登入
+
+//vip等级是否升级
+optional int32 vipup = 26;
+
+//系统通知
+optional bytes actives = 27;
+
+//金豆数量
+optional int32 goldbean = 28;
+
+
+//充值金额数   0则是没有首充  大于0则已经首充过
+optional int32 czyuanbao = 29;
+//首充金额数 顺序是:  0大厅  1初级 2中级 3高级 
+repeated int32 scjes = 30;
+//首充价值多少元
+optional int32 scjz	= 31;
+
+//首充礼品类型和时间说明  这个是对应的
+//首充说明
+//type: 1金牛  2VIP  3抽奖卡 4换牌卡 5看牌卡 6秒杀卡 7互动道具  8游戏提示   9连续登入金币    10赠送金币  11参赛券  12金豆   13vip礼包
+//num:   天     天    张       张      张      张        个          次           个              个         个       个        个
+repeated int32 sclptype = 32;
+repeated int32 sclpnum = 33;
+
+//游戏快充  充值金额数   
+//kctype----1:初级房间  2:中级房间  3:高级房  4:道具场 5:比赛场
+//kcjes-----对应金额
+repeated int32 kctype = 34;
+repeated int32 kcjes = 35;
+
+//退出挽留  vip新用户  vip老用户 vip过期用户 新手  老手
+//type: 1金牛  2VIP  3抽奖卡 4换牌卡 5看牌卡 6秒杀卡 7互动道具  8游戏提示   9连续登入金币    10赠送金币  11参赛券  12金豆   13vip礼包
+//num:   天     天    张       张      张      张        个          次           个              个         个       个        个
+repeated int32 vipnewexittype = 36;	//vip新用户
+repeated int32 vipnewexitnum= 37;
+repeated int32 vipoldexittype = 38;	//vip老用户
+repeated int32 vipoldexitnum= 39;
+repeated int32 vipgqexittype = 40;	//vip过期用户
+repeated int32 vipgqexitnum= 41;
+
+repeated int32 newexittype = 42;
+repeated int32 newexitnum= 43;
+
+repeated int32 oldexittype = 44;
+repeated int32 oldexitnum= 45;
+
+//是否是新手
+optional int32 registerday	= 46;	//注册天数  0-n
+
+//比赛场金币奖励   
+//type:  1金币
+//num :   个
+optional int32 bsmc =  47;		//名次 未上榜 -1 上榜是从1到20
+repeated int32 bsjltype =  48;		//奖励类型
+repeated int32 bsjlnum =  49;		//奖励数量
+//活动介绍
+repeated bytes hdadress = 50;	//活动的地址 如果没有这个字段则说明没有活动
+repeated bytes hdtips = 51;	//活动文字介绍
+
+//快速开始房间ID
+//下标: 0-1初级房  1-2中级房 2-3高级房  
+//值-1是无上限
+repeated int32 ksroomgold = 52;
+
+//下载地址
+optional bytes downloadadress = 53;	//图片等下载地址
+
+//当天赠送的参赛券
+optional int32 csqnum = 54;
+//当天比赛输赢的金币数
+optional int32 bsgoldnum = 55;
+
+
+//更多游戏
+optional bytes gameaddress = 56;
+
+//显示商城类型 1旧商城 2 新商城  
+optional int32 malldistype = 57;
+optional ox_mall2_data mall2data = 58;
+
+//前三名的奖励
+repeated bytes nickname = 59;
+repeated int32 jlgold = 60;
+
+optional int32 hasylt = 61;	// 0 不显示 1 显示
+
+//产品信息的地址
+optional bytes productaddr = 62;
+
+//美女直播开着控制
+optional int32 ziboflag = 63;//0 不显示 1 显示
+optional int32 zibogold = 64;//进入直播的金币数
+
+//新版本活动提示
+optional OX_New_Active_Tips activetips = 65;
+//新版活动具体显示内容
+repeated OX_New_Active_Content activedetail = 66;	
+
+//积分兑换开头控制
+optional int32 jfexchangeflag = 67;
+
+//今日捷报
+optional bytes jbstr = 68;
+
+
+//斗地主的活动显示
+repeated OX_New_Active_Tips ddzactive = 69;
+//用户荣誉数据
+optional Ox_Honor_Personal_Data honordata = 70;
+
+//充值方式  0  只使用短信 1 正常使用 3 优先使用第三充值
+optional  int32 smsfeeflag = 71;
+optional OX_GIFT_MSG gifts=72;//新增登录礼包的相关信息,如果没有通道则没有此字段
+optional int32 firstInRoom=73;//今日是否进入过房间,0没有 其他值:有
+
+repeated Ox_Ranking_Data rankingdata = 74;    //1本月充值冠军 2昨天充值冠军 3上周赢局冠军 4上周魅力冠军
+optional Ox_Ddz_Info ddzinfo = 75;			//斗地主下载地址
+repeated Ox_Ranking_Data  userrankingdata = 76;
+optional int32 hasrank = 77;	// 0 不显示 1 显示
+optional int32 paytype = 78;	//0x01只有ios 0x02支付宝 
+optional bytes iosadress = 79;//ios验证地址
+optional bytes ioscalladress = 80;//ios验证地址
+}
+
+
+//金牛金币领取
+message OX_LOBBY_GET_GOLD{
+required int32 bsuccess = 1;	//领取结果 0是成功
+optional int64 goldnum = 2;	//用户当前金币数量
+}
+
+
+//系统喇叭
+message OX_Speaker_DATA{
+required string content = 1;	//内容
+required int32 interval = 2;	//时间间隔
+required int32 time = 3;		//显示时长
+}
+
+

@@ -1,0 +1,11 @@
+
+message OX_GIFT_MSG{
+required int32 usertype = 1;	//用户类型1.首充用户 2付费用户 3非付费 ,4非首充
+required int32 amount = 2;	//支付金额 ,如果购买方式为1第三方购买 ,则需要判断该用户的当前元宝数,传入SDK金额=amount-当前元宝数
+required int32 paytype = 3;	//支付方式0短代方式,1第三方SDK支付
+required int32 productid = 4;	//商品id,为0则是快充
+repeated int32 giftvaule = 5;	//礼品数量 1金币,2金牛,3互动道具,4赦免令,5跨越等级对应的数量
+optional string payId = 6;	//计费点id
+}
+
+

@@ -1,0 +1,17 @@
+//金牛领取 客户端发送数据
+message OX_GOLD_OX_MSG{
+required int32 type = 1;	// 1 获取金牛数据 2领取金币
+required int32 uID = 2;		//用户ID
+}
+//领取金牛的金币
+message OX_GOLD_OX_RET_MSG{
+required int32 nRet = 1;	//查询或领取是否成功 0 不成功 1成功
+optional float weight = 2;	//金牛重量	type = 1
+optional int64 goldnum = 3;	//如果是获取金牛数据则是当前金牛可领取的金币数  如果是领取金牛金币则是用户当前所有金币数 如果为0说明已领取
+optional int32 nexttime = 4;	//下次领取时间
+optional int32 maxgoldnum = 5;	//金牛最大容量
+optional int32 sparetime = 6;	//到下次领取时间的秒数
+optional int32 daymaxgoldnum = 7;	//每天金牛最大产量
+}
+
+
